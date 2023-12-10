@@ -7,19 +7,20 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      primary: '#00796B',       // Teal
-      secondary: '#FF6F61',     // Coral
-      accent: '#FFD700',        // Gold
-      background: '#F5F5F5',    // Light Gray
-      text: '#333333',          // Dark Gray
-      link: '#3F51B5',          // Indigo
-    },
+    
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      colors: {
+        primary: '#3F51B5',       // Purple
+        secondary: '#E1BEE7',     // Light Purple
+        accent: '#FFFFFF',        // White
+        background: '#F3E5F5',    // Lavender
+        text: '#333333',          // Dark Gray
+        link: '#9C27B0',          // Indigo
       },
     },
   },

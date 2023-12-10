@@ -6,7 +6,6 @@ import clsx from "clsx";
 
 export default function NavMenu() {
     const [clientWindowHeight, setClientWindowHeight] = useState(0);
-    const [navColor, setNavColor] = useState('bg-primary');
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
@@ -16,14 +15,6 @@ export default function NavMenu() {
     const handleScroll = () => {
         setClientWindowHeight(window.scrollY);
     };
-
-    // useEffect(() => {
-    //     if (clientWindowHeight !== 0) {
-    //         setNavColor('bg-secondary')
-    //     } else {
-    //         setNavColor('bg-primary')
-    //     }
-    // }, [clientWindowHeight]);
 
     return (
         <div
@@ -48,10 +39,10 @@ export default function NavMenu() {
                         clsx(
                             `${logo.className} text-2xl flex justify-center text-text rounded-md p-4 w-full h-full transition-all duration-500 ease-out`,
                             {
-                                'hover:bg-secondary': clientWindowHeight === 0
+                                'hover:bg-secondary text-white hover:text-black': clientWindowHeight === 0
                             },
                             {
-                                'hover:bg-primary': clientWindowHeight !== 0
+                                'hover:bg-primary text-text hover:text-white': clientWindowHeight !== 0
                             }
                         )
                     }
@@ -62,49 +53,49 @@ export default function NavMenu() {
                     href='/discover'
                     className={
                         clsx(
-                            `${body.className} text-xl flex justify-center text-text hover:bg-secondary rounded-md p-4 w-1/2 h-[64px] transition-all duration-500 ease-out`,
+                            `${body.className} text-xl flex justify-center text-text rounded-md p-4 w-1/2 h-[64px] transition-all duration-500 ease-out`,
                             {
-                                'hover:bg-secondary': clientWindowHeight === 0
+                                'hover:bg-secondary text-white hover:text-black': clientWindowHeight === 0
                             },
                             {
-                                'hover:bg-primary': clientWindowHeight !== 0
+                                'hover:bg-primary text-text hover:text-white': clientWindowHeight !== 0
                             }
                         )
                     }
                 >
-                    Discover
+                    discover
                 </Link>
                 <Link
                     href='/connections'
                     className={
                         clsx(
-                            `${body.className} text-xl flex justify-center text-text hover:bg-secondary rounded-md p-4 w-1/2  h-[64px] transition-all duration-500 ease-out`,
+                            `${body.className} text-xl flex justify-center text-text rounded-md p-4 w-1/2  h-[64px] transition-all duration-500 ease-out`,
                             {
-                                'hover:bg-secondary': clientWindowHeight === 0
+                                'hover:bg-secondary text-white hover:text-black': clientWindowHeight === 0
                             },
                             {
-                                'hover:bg-primary': clientWindowHeight !== 0
+                                'hover:bg-primary text-text hover:text-white': clientWindowHeight !== 0
                             }
                         )
                     }
                 >
-                    Connections
+                    connections
                 </Link>
                 <Link
                     href='/inbox'
                     className={
                         clsx(
-                            `${body.className} text-xl flex justify-center text-text hover:bg-secondary rounded-md p-4 w-1/2 h-[64px] transition-all duration-500 ease-out`,
+                            `${body.className} text-xl flex justify-center text-text rounded-md p-4 w-1/2 h-[64px] transition-all duration-500 ease-out`,
                             {
-                                'hover:bg-secondary': clientWindowHeight === 0
+                                'hover:bg-secondary text-white hover:text-black': clientWindowHeight === 0
                             },
                             {
-                                'hover:bg-primary': clientWindowHeight !== 0
+                                'hover:bg-primary text-text hover:text-white': clientWindowHeight !== 0
                             }
                         )
                     }
                 >
-                    Messages
+                    messages
                 </Link>
             </nav>
         </div >

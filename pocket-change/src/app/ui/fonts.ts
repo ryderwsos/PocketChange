@@ -2,7 +2,7 @@ import { Montserrat, Lato, Playfair_Display, Quicksand } from 'next/font/google'
 
 export const heading = Montserrat(
     {
-        weight: ['400'], 
+        weight: ['700'], 
         style: ['italic'],
         subsets: ['latin']
     }

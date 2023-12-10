@@ -1,19 +1,46 @@
 import Image from 'next/image'
+import { heading } from './ui/fonts'
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="flex min-h-[80vh] flex-col items-center justify-between p-24 w-full rounded-md">
-      <div className='flex flex-row basis-3/4'>
-        <h1>
-          Art
+    <main className="flex flex-col items-center justify-between px-24 py-4 w-full rounded-md">
+      <div className='flex flex-row w-full h-full'>
+        <h1 className={`${heading.className} text-[11rem] bg-gradient-to-br from-background to-primary text-transparent bg-clip-text`}>
+          Where Art Meets Networking
         </h1>
-        <h1>
-          Networking
-        </h1>
+        <div className='flex flex-col justify-center items-center h-max absolute top-[400px] right-[400px] '>
+          <button
+            className='m-5 bg-primary hover:bg-highlight px-60 py-5 rounded-md transition-all duration-500'
+          >
+            <Link
+              href="/login"
+              className='w-full'
+            >
+              Login
+            </Link>
+          </button>
+
+          <Link
+            href="/discover"
+            className='w-full h-full'
+          >
+            <button
+              className='m-5 bg-primary hover:bg-highlight px-60 py-5 rounded-md transition-all duration-500'
+            >
+            Explore!
+          </button>
+        </Link>
+
       </div>
-      <div className='basis-1/4'>
-        hi
-      </div>
+      {/* <Image 
+          src="/insert_link.png"
+          width={128}
+          height={128}
+          alt='Chain'
+        />
+        <a href='https://dryicons.com/free-icons/chain'> Icon by Dryicons </a> */}
+    </div>
       {/* <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
@@ -119,6 +146,6 @@ export default function Home() {
           </p>
         </a>
       </div> */}
-    </main>
+    </main >
   )
 }
