@@ -10,6 +10,6 @@ export async function POST(req: Request, res: NextApiResponse){
 
     const encrypt_password = await bcrypt.hash(password, 10)
 
-    await User.create({username, encrypt_password, email})
+    await User.create({username, password: encrypt_password, email})
     return NextResponse.json({username, password, email})
 }
