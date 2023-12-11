@@ -1,43 +1,71 @@
 'use client';
-import Link from "next/link";
-import React from "react";
-import { useRouter } from "next/navigation";
-import axios from 'axios';
+import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import {
     AtSymbolIcon,
-    KeyIcon,
     ExclamationCircleIcon,
+    KeyIcon,
     UserCircleIcon
 } from '@heroicons/react/24/outline';
-import { ArrowRightIcon } from '@heroicons/react/20/solid';
+import axios from 'axios';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React from "react";
 import { Button } from "../components/Button";
+import toast from 'react-hot-toast';
 
 export default function SignUpPage() {
 
+    const router = useRouter();
     const [user, setUser] = React.useState({
         email: "",
         password: "",
         username: ""
     })
+    const [buttonDisabled, setButtonDisabled] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
 
-    const onSignup = async () => {
-        console.log('Clicked!')
+    const onSignup = async (e: any) => {
+        try {
+            e.preventDefault()
+            setLoading(true);
+            const response = await axios.post(
+                "/api/user/signup",
+                user
+            );
+            console.log("Signup Success: ", response.data);
+            router.push('/login')
+            
+        } catch (error: any) {
+            console.log('Signup Failed', error)
+            console.log('ERROR')
+            toast.error(error.message)
+        } finally {
+            setLoading(false);
+        }
     }
+
+    React.useEffect(() => {
+        if (user.email.length > 0 && user.username.length > 0 && user.password.length > 0) {
+            setButtonDisabled(false);
+        } else {
+            setButtonDisabled(true);
+        }
+    }, [user])
 
     return (
         <main className="flex items-center justify-center md:h-full">
-            <div 
+            <div
                 className="mx-auto flex justify-center items-center flex-col space-y-2.5 p-4 md:mt-96"
             >
-                <div 
+                <div
                     className="flex justify-center items-end rounded-lg bg-secondary p-3 md:h-36"
                 >
-                    <form className="space-y-3">
-                        <div 
+                    <form className="space-y-3" onSubmit={onSignup}>
+                        <div
                             className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8 text-black"
                         >
                             <h1 className={`mb-3 text-2xl text-primary`}>
-                                Please sign up to continue.
+                                {loading ? 'Processing' : 'Please sign up to continue.'}
                             </h1>
                             <div className="w-full">
                                 <div>
@@ -105,7 +133,7 @@ export default function SignUpPage() {
                                     </div>
                                 </div>
                             </div>
-                            <SingupButton handler={onSignup} />
+                            <SignupButton type='submit' text={buttonDisabled ? 'No Sign Up!' : 'Sign Up!'}/>
                             <div className="flex h-8 items-end space-x-1">
                                 {/* Add form errors here */}
                             </div>
@@ -120,15 +148,16 @@ export default function SignUpPage() {
     );
 }
 
-function SingupButton({ handler }: {
-    handler: () => void
+function SignupButton({ type, text }: {
+    type: 'submit' | 'reset' | 'button' | undefined
+    text: String
 }) {
     return (
         <Button
-            onClick={handler}
+            type={type}
             className="mt-4 w-full bg-primary"
         >
-            Sign Up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+            {text} <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
     );
 }

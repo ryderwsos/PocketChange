@@ -3,10 +3,11 @@ import User from "@/app/api/model/userModel";
 import bcryptjs from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 
-connect()
-
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
     try {
+    
+        await connect()
+
         const reqBody = await request.json()
         const { username, email, password } = reqBody
 
@@ -14,10 +15,11 @@ export async function POST(request: NextRequest) {
 
         // checking if user already exists
         const user = await User.findOne({email: email})
+        console.log(user)
 
         if (user) {
             return NextResponse.json(
-                {error: "User alreayd exists"},
+                {error: "User already exists"},
                 {status: 400}
             )
         }

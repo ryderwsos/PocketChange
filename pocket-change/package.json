@@ -19,7 +19,8 @@
     "next": "14.0.4",
     "puppeteer": "^21.6.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "^20",

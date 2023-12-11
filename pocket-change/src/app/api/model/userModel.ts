@@ -21,11 +21,11 @@ const userSchema = new mongoose.Schema({
         trim: true
     },
     isVerified: {
-        type: boolean,
+        type: Boolean,
         default: false,
     },
     isAdmin: {
-        type: boolean,
+        type: Boolean,
         default: false
     },
     forgotPasswordToken: String,
